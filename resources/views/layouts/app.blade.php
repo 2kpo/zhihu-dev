@@ -80,5 +80,6 @@
     <script>
         $('#flash-overlay-modal').modal();
     </script>
+    @yield('js')
 </body>
 </html>
