@@ -7,9 +7,10 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="apiToken" content="{{ Auth::check()?'Bearer '.Auth::user()->api_token:'Bearer ' }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <link rel="icon" href="{{ asset('images/onepiece3.png') }}">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -78,7 +79,16 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
+    @if (Auth::check())
+        window.Zhihu = {
+            name:"{{ Auth::user()->name }}",
+            avatar:"{{ Auth::user()->avatar }}"
+        };
+    @endif
+    </script>
+    <script>
         $('#flash-overlay-modal').modal();
     </script>
+    @yield('js')
 </body>
 </html>

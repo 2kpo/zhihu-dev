@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Mail;
+use App\UserMailer;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -54,6 +54,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'api_token' => str_random(60)
         ]);
     }
 
@@ -85,14 +86,7 @@ class RegisterController extends Controller
             'name'=> $user->name
         ];
 
-
-
-        $template = new SendCloudTemplate('test_template_active', $data);
-        Mail::raw($template, function ($message) use ($user) {
-            $message->from('2kpo@zhihu-dev.com', '2kpo');
-
-            $message->to($user->email);
-        });
+        (new UserMailer())->sendTo($data, 'test_template_active', $user->email)
     }
 
 }

@@ -11,12 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'QuestionsController@index');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('email/verify/{token}', ['as' => 'email.verify', 'uses' => 'EmailController@verify']);
+
+Route::resource('questions', 'QuestionsController', ['names' => [
+    'create' => 'question.create',
+    'show' => 'question.show',
+    ]]);
+Route::post('/questions/{question}/answer', 'AnswerController@store');
+Route::get('/questions/{question}/follow', 'QuestionFollowController@follows');
+Route::get('/notifications', 'NotificationsController@index');
+Route::get('/inbox', 'InboxController@index');
+Route::get('/inbox/{dialog_id}', 'InboxController@show');
