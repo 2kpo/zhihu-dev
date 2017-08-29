@@ -20,17 +20,13 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label for="img">图片</label>
-                            <input type="file" name="img" id="img" class="form-control">
-                        </div>
-                        <div class="form-group">
                             <select name="topics[]" class="js-example-placeholder-multiple js-data-example-ajax form-control" multiple="multiple">
                             </select>
                         </div>
                         <!-- 编辑器容器 -->
                         <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
                         <label for="title">内容</label>
-                            <script id="container" name="body" type="text/plain">{!! old('body') !!}</script>
+                            <script id="container" name="body" style="height: 200px" type="text/plain">{!! old('body') !!}</script>
                             @if ($errors->has('body'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('body') }}</strong>
@@ -49,7 +45,18 @@
 @section('js')
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
-    var ue = UE.getEditor('container');
+    var ue = UE.getEditor('container',
+    {
+        toolbars: [
+        ['bold', 'italic', 'underline', 'strikethrough', 'blockquote', 'insertunorderedlist', 'insertorderedlist', 'justifyleft','justifycenter', 'justifyright',  'link', 'insertimage', 'fullscreen']
+        ],
+        elementPathEnabled: false,
+        enableContextMenu: false,
+        autoClearEmptyNode:true,
+        wordCount:false,
+        imagePopup:false,
+        autotypeset:{ indent: true,imageBlockLine: 'center' }
+    });
     ue.ready(function() {
         ue.execCommand('serverparam', '_token', '{{ csrf_token() }}'); // 设置 CSRF token.
     });
