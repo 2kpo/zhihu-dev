@@ -20,4 +20,12 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+<style>
+    .panel-body img {
+        width: 100%;
+    }
+</style>
+>>>>>>> master
 @endsection

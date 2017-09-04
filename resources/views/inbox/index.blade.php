@@ -18,6 +18,7 @@
                     });
                     @endphp
                         <div class="media {{ $flag ? '' : 'unread' }}">
+
                             <div class="media-left">
                                 <a href="">
                                     @if($messageGroup->last()->fromUser->id == user()->id)

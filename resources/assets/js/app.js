@@ -23,6 +23,7 @@ Vue.component('user-message-button', require('./components/UserMessageButton.vue
 Vue.component('comment', require('./components/Comment.vue'));
 Vue.component('user-avatar', require('./components/Avatar.vue'));
 
+
 const app = new Vue({
     el: '#app'
 });

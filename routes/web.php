@@ -34,3 +34,4 @@ Route::get('/dashboard', 'UserController@avatar');
 Route::post('/dashboard/upload', 'UserController@upload');
 Route::get('/password', 'PasswordController@index');
 Route::post('/password/update', 'PasswordController@update');
+
