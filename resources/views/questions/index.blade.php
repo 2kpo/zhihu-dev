@@ -9,7 +9,7 @@
                 <div class="media">
                     <div class="media-left">
                         <a href="">
-                            <img width='36' src="{{ $question->user->avatar }}" alt="{{ $question->user->name }}">
+                            <img width='36px;' src="{{ $question->user->avatar }}" alt="{{ $question->user->name }}">
                         </a>
                     </div>
                     <div class="media-body">
@@ -20,9 +20,4 @@
         </div>
     </div>
 </div>
-<style>
-    .panel-body img {
-        width: 100%;
-    }
-</style>
 @endsection

@@ -9,7 +9,15 @@
 
                 <div class="panel-body">
                     @foreach($messages as $messageGroup)
-                        <div class="media">
+                    @php
+                    $flag = $messageGroup->every(function($item){
+                        if (user()->id == $item->from_user_id) {
+                        return true;
+                        }
+                        return $item->has_read == 'T';
+                    });
+                    @endphp
+                        <div class="media {{ $flag ? '' : 'unread' }}">
                             <div class="media-left">
                                 <a href="">
                                     @if($messageGroup->last()->fromUser->id == user()->id)

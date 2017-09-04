@@ -53,6 +53,9 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                <li><a href="/">个人中心</a></li>
+                                    <li><a href="/notifications">通知列表</a></li>
+                                    <li><a href="/inbox">私信列表</a></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();

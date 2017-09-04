@@ -8,11 +8,14 @@
                 <div class="panel-heading">消息列表</div>
 
                 <div class="panel-body">
-                <form action="/inbox/{{$messages->first()->dialog_id}}/store" class="">
-
+                <form action="/inbox/{{$messages->first()->dialog_id}}/store" class="form-group" style="margin-bottom: 50px;" method="post">
+                {{ csrf_field() }}
+                <input type="text" name="dialog_id" value="{{$messages->first()->dialog_id}}" hidden="">
+                    <textarea name="body" id="" cols="30" rows="10" class="form-control"></textarea>
+                    <button type="submit" class="btn btn-success pull-right">提交</button>
                 </form>
                     @foreach($messages as $message)
-                        <div class="media">
+                        <div class="media" >
                             <div class="media-left">
                                 <a href="">
                                     <img src="{{ $message->fromUser->avatar }}" alt="" class="media-boject" width="24px">
